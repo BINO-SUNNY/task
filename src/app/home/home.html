@@ -1,0 +1,76 @@
+<div class="container mt-4">
+
+    <h2>Projects</h2>
+
+    <input
+        type="text"
+        class="form-control mb-2"
+        [(ngModel)]="projectName"
+        placeholder="Project Name">
+
+    <button
+        class="btn btn-primary mb-3"
+        (click)="addProject()">
+        Add Project
+    </button>
+
+    <div *ngFor="let project of projects" class="project-item">
+
+        <span>{{ project.name }}</span>
+
+       <button
+    class="btn btn-success btn-sm"
+    (click)="showDetails(project)">
+    Details
+</button>
+
+    </div>
+
+    <div *ngIf="selectedProject" class="card mt-4 p-3">
+
+        <h4>{{ selectedProject.name }}</h4>
+
+        <input
+            type="text"
+            class="form-control mb-2"
+            [(ngModel)]="taskName"
+            placeholder="Task Name">
+
+        <button
+            class="btn btn-primary mb-3"
+            (click)="addTask()">
+            Add Task
+        </button>
+
+        <ul class="list-group">
+
+            <li
+                *ngFor="let task of selectedProject.tasks; let i=index"
+                class="list-group-item">
+
+                {{ task }}
+
+                <button
+    class="btn btn-secondary btn-sm"
+    (click)="moveUp(i)">
+    Up
+</button>
+
+<button
+    class="btn btn-secondary btn-sm"
+    (click)="moveDown(i)">
+    Down
+</button>
+
+<button
+    class="btn btn-danger btn-sm"
+    (click)="deleteTask(i)">
+    Delete
+</button>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
